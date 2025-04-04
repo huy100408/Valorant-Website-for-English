@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valorant Essay Poll</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top left, #1c1c1c, #0f0f0f);
+      font-family: 'Titillium Web', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .poll-container {
+      background: linear-gradient(145deg, #1e1e1e, #141414);
+      padding: 40px 50px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 850px;
+      box-shadow: 0 0 20px rgba(255, 70, 85, 0.3);
+      border: 1px solid #ff4655;
+      animation: fadeIn 1s ease-out;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      color: #ff4655;
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
+      text-shadow: 0 0 10px #ff4655;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 8px;
+      font-weight: 600;
+      color: #e0e0e0;
+      font-size: 1.1rem;
+      transition: 0.3s ease;
+    }
+
+    select, textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 2px solid #333;
+      background-color: #2a2a2a;
+      color: #fff;
+      transition: 0.3s ease;
+    }
+
+    select:focus, textarea:focus {
+      border-color: #ff4655;
+      outline: none;
+      box-shadow: 0 0 8px #ff4655;
+      transform: scale(1.01);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #ff4655;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 12px;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      display: block;
+      width: 100%;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 10px rgba(255, 70, 85, 0.4);
+    }
+
+    button:hover {
+      background-color: #e03a4f;
+      box-shadow: 0 0 20px #ff4655, 0 0 10px #ff4655 inset;
+      transform: scale(1.02);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    @media (max-width: 600px) {
+      .poll-container {
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poll-container">
+    <h1>📝 Valorant Essay Poll</h1>
+    <form id="pollForm">
+      <label>1. How clear was the explanation of Valorant’s gameplay?</label>
+      <select name="clarity">
+        <option value="Very Clear">Very Clear</option>
+        <option value="Somewhat Clear">Somewhat Clear</option>
+        <option value="Not Clear">Not Clear</option>
+      </select>
+
+      <label>2. Which aspect did you enjoy most in the essay?</label>
+      <select name="favoriteAspect">
+        <option value="Teamwork & Communication">Teamwork & Communication</option>
+        <option value="Strategic Thinking">Strategic Thinking</option>
+        <option value="Reflex Skills">Reflex Skills</option>
+        <option value="Social Impact">Social Impact</option>
+      </select>
+
+      <label>3. Did the essay make you want to try or keep playing Valorant?</label>
+      <select name="interestLevel">
+        <option value="Absolutely">Absolutely</option>
+        <option value="Maybe">Maybe</option>
+        <option value="Not Really">Not Really</option>
+      </select>
+
+      <label>4. How do you rate the use of sources and evidence in the essay?</label>
+      <select name="evidenceUse">
+        <option value="Excellent">Excellent</option>
+        <option value="Good">Good</option>
+        <option value="Needs Improvement">Needs Improvement</option>
+      </select>
+
+      <label>5. What real-life skill was most clearly explained?</label>
+      <select name="skill">
+        <option value="Teamwork">Teamwork</option>
+        <option value="Focus/Reflex">Focus/Reflex</option>
+        <option value="Problem Solving">Problem Solving</option>
+        <option value="Communication">Communication</option>
+      </select>
+
+      <label>6. please put your name here!</label>
+      <textarea name="comment" rows="4" placeholder="put your name..."></textarea>
+
+      <button type="submit">🚀 Submit Feedback</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('pollForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = new FormData(e.target);
+      const data = {
+        clarity: form.get('clarity'),
+        favoriteAspect: form.get('favoriteAspect'),
+        interestLevel: form.get('interestLevel'),
+        evidenceUse: form.get('evidenceUse'),
+        skill: form.get('skill'),
+        comment: form.get('comment'),
+      };
+
+      const content = {
+        content: `🗳️ **New Valorant Essay Poll Response:**
+1. Clarity: **${data.clarity}**
+2. Favorite Aspect: **${data.favoriteAspect}**
+3. Wants to Play Valorant? **${data.interestLevel}**
+4. Evidence Use: **${data.evidenceUse}**
+5. Most Impactful Skill: **${data.skill}**
+6. 💬 Comment: ${data.comment || "_No comment_"}`
+      };
+
+      await fetch("https://discord.com/api/webhooks/1357557309475258543/9BF6u48wMJpnOsIFOWWZGuxO_f01KSIyCLzZp1YZhtsd1bfC82ITf1NLsBrUXOr1hnTC", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(content)
+      });
+
+      alert("✅ Thank you! Your feedback has been sent.");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
 
